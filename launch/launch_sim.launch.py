@@ -54,6 +54,22 @@ def generate_launch_description():
         output='screen'
     )
 
+    # ----------------------------------------
+    # RViz2 with Config File
+    # ----------------------------------------
+    rviz_config_path = os.path.join(
+        get_package_share_directory(package_name),
+        'config',
+        'view_bot.rviz'
+    )
+
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        arguments=['-d', rviz_config_path],
+        output='screen'
+    )
 
     # ----------------------------------------
     # Launch Description
@@ -62,5 +78,6 @@ def generate_launch_description():
         rsp,
         gazebo,
         spawn_entity,
+        rviz_node,
     ])
 
